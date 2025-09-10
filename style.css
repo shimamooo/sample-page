@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap");
+
+body {
+  margin: 0;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+body > * {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+}
+
+div {
+  display: grid;
+  place-content: center;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+div > * {
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  display: block;
+  text-align: center;
+  font: 900 10vmin/1.2 "Orbitron", system-ui;
+  color: white;
+  letter-spacing: 5;
+  text-transform: uppercase;
+  translate: 0;
+  scale: 1;
+  opacity: 0;
+  animation: grow 4s cubic-bezier(1, 0, .8, 1);
+  animation-delay: 500ms;
+}
+
+span.zoom {
+  font-size: 100vmin;
+}
+
+span.slide {
+  position: relative;
+  isolation: isolate;
+  animation: glow 3.5s linear;
+  animation-delay: 250ms;
+}
+
+span.slide::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  -webkit-text-stroke: 0.2em #000;
+  z-index: -1;
+}
+
+span.paper {
+  --color: #000;
+  --tr-start: 0 800px;
+  color: var(--color);
+  translate: 0;
+  scale: 2;
+  opacity: 0;
+  filter: drop-shadow(2px 2px 2px var(--color)) invert(0.2);
+  animation: appear 1.5s cubic-bezier(0.9, 0, 0.77, 1.18);
+  animation-delay: 300ms;
+}
+
+span.paper:nth-of-type(even) {
+  --tr-start: -1400px 0;
+  --color: #f33;
+}
+
+@keyframes appear {
+  0% {
+    translate: var(--tr-start);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  20% {
+    translate: 0;
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    translate: 0;
+    opacity: 0.1;
+  }
+
+  85% {
+    translate: 400px 0;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  95% {
+    translate: 400px 0;
+    opacity: 0;
+  }
+
+  100% {
+    translate: 400px 0;
+  }
+}
+
+@keyframes glow {
+  0% {
+    scale: 0.125;
+    translate: 800px 0;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  10% {
+    translate: 0;
+    opacity: 1;
+  }
+
+  95% {
+    scale: 4;
+    opacity: 0;
+  }
+
+  100% {
+    scale: 4;
+    opacity: 0;
+  }
+}
+
+@keyframes grow {
+  0% {
+    scale: .0125;
+    opacity: 0;
+  }
+
+  36% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    scale: 3;
+    opacity: 0;
+    letter-spacing: 2em;
+  }
+}

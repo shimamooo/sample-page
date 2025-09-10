@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="script.js"></script>
+<canvas id="canvas"></canvas>
+<div id="titles"></div>
+<script type="x-shader/x-vertex">#version 300 es
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+  precision highp float;
+  #else
+  precision mediump float;
+  #endif
+
+  in vec2 position;
+
+  void main(void) {
+    gl_Position = vec4(position, 0, 1);
+  }
+</script>
+<script type="x-shader/x-fragment">#version 300 es
+  /*********
+  * made by Matthias Hurrle (@atzedent)
+  */
+
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+  precision highp float;
+  #else
+  precision mediump float;
+  #endif
+
+  out vec4 fragColor;
+
+  uniform vec2 resolution;
+  uniform float time;
+  uniform float fade;
+
+  #define T time
+  #define S smoothstep
+
+  #define TAU 6.2831853
+
+  float rnd(vec2 p) {
+    return fract(sin(dot(p, p.yx + vec2(1234, 2345))) * 345678.);
+  }
+
+  vec3 grid(vec2 uv) {
+    vec3 col = vec3(0);
+
+    float n = 1.2;
+    vec2 g = abs(mod(uv, n) - .5 * n);
+
+    col = mix(vec3(1), vec3(0), S(.08, .0, min(g.x, g.y)));
+    col = min(col, mix(vec3(1), vec3(0), .125));
+
+    return col;
+  }
+
+  void main(void) {
+    vec2 uv = (
+      gl_FragCoord.xy - .5 * resolution
+    ) / min(resolution.x, resolution.y);
+    uv *= 48.7;
+    vec3 col = grid(uv);
+
+    float
+    d = length(vec2(log(length(uv)) - T * .5, atan(abs(uv.y), abs(uv.y)) / TAU));
+    d = sin(d * dot(col, col)) - .05;
+    d = abs(d);
+    d = pow(.3 / d, .75);
+
+    d = max(.0, d * mix(.75, 1., rnd(uv)));
+
+    col *= mix(d, 1., 1. - min(1., S(.7, .8, T * .4)));
+
+    col = mix(col, vec3(.01, .05, .052), .75);
+    col = mix(col, vec3(1), S(.9, 1., fade * fade));
+    col = mix(col, vec3(0), 1. - min(1., S(.5, .8, T * .4)));
+
+    fragColor = vec4(col, 1);
+  }
+</script>
+<script type="x-shader/x-fragment">#version 300 es
+  /*********
+  * made by Matthias Hurrle (@atzedent)
+  */
+
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+  precision highp float;
+  #else
+  precision mediump float;
+  #endif
+
+  out vec4 fragColor;
+
+  uniform vec2 resolution;
+  uniform float time;
+  uniform float fade;
+
+  #define T time
+  #define S smoothstep
+
+  float rnd(vec2 p) {
+    return fract(sin(dot(p, p.yx + vec2(1234, 2345))) * 345678.);
+  }
+
+  vec3 hue(float a) {
+    return vec3(0) + step(a, .5);
+  }
+
+  vec3 grid(vec2 uv) {
+    vec3 col = vec3(0);
+
+    uv *= 98.7;
+
+    float n = 1.2;
+    vec2 g = abs(mod(uv, n) - .5 * n),
+    id = floor(uv / n + .5);
+
+    col = mix(vec3(1), vec3(0), S(.08, .0, min(g.x, g.y)));
+    col = min(
+      col,
+      mix(
+        vec3(1),
+        hue(
+          rnd(
+            vec2(
+              log(length(id * 100.)) - floor(10. * fract(T * 2.5)),
+              atan(id.y, id.x)
+            )
+          )
+        ),
+        .65
+      )
+    );
+
+    return col * mix(.5, 1., rnd(id));
+  }
+
+  void main(void) {
+    vec2 uv = (
+      gl_FragCoord.xy - .5 * resolution
+    ) / min(resolution.x, resolution.y);
+    vec3 col = grid(uv);
+
+    col = mix(col, vec3(.01, .05, .052) * 4., .125);
+    col = mix(col, vec3(1), S(.9, 1., fade * fade));
+    col = mix(col, vec3(1), 1. - min(1., S(.0, 1., T * .8)));
+
+    fragColor = vec4(col, 1);
+  }
+</script>
+<script type="x-shader/x-fragment">#version 300 es
+  /*********
+  * made by Matthias Hurrle (@atzedent)
+  */
+
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+  precision highp float;
+  #else
+  precision mediump float;
+  #endif
+
+  out vec4 fragColor;
+
+  uniform vec2 resolution;
+  uniform float time;
+  uniform float fade;
+
+  #define T time
+  #define S smoothstep
+
+  float rnd(vec2 p) {
+    return fract(sin(dot(p, p.yx + vec2(1234, 2345))) * 345678.);
+  }
+
+  vec3 grid(vec2 uv) {
+    vec2 p = uv;
+    vec3 col = vec3(0);
+
+    uv *= 28.7;
+
+    float n = 1.2,
+    distort = mix(.5, 1., rnd(p));
+    vec2 g = abs(mod(uv, n) - .5 * n),
+    id = floor(uv / n + .5);
+
+    col = mix(vec3(1), vec3(0), S(.08 * distort, .0, min(g.x, g.y)));
+
+    return col;
+  }
+
+  void main(void) {
+    vec2 uv = (
+      gl_FragCoord.xy - .5 * resolution
+    ) / min(resolution.x, resolution.y);
+    vec3 col = grid(uv);
+
+    col = mix(col, vec3(0), S(.9, 1., fade * fade));
+    col = mix(col, vec3(1), 1. - min(1., S(.0, .5, T * .4)));
+
+    fragColor = vec4(col, 1);
+  }
+</script>
+</body>
+</html>
