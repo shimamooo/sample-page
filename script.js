@@ -87,9 +87,9 @@ function draw(now, program, duration) {
 
 const styleList = ["zoom", "slide", "paper"]
 const wordlist = [
-  ["The", "100X", "Knowledge", "Platform", "", ""],
+  ["100X", "Knowledge", "Platform", "", ""],
   ["Loading...", ""],
-  ["Viso", "", "", "", "", "", "", ""]
+  ["", "", "", "", "", "", ""]
 ]
 
 let handle, offset = 0,
@@ -103,11 +103,29 @@ fade = 0,
 finished = false,
 finalHoldStart = null
 
+let postitShown = false
+
+function showPostit() {
+  if (postitShown) return
+  const img = document.createElement("img")
+  img.id = "postit-note"
+  img.src = "images/postit.png"
+  img.alt = ""
+  img.style.position = "fixed"
+  img.style.top = "0"
+  img.style.left = "0"
+  img.style.width = "140px"
+  img.style.zIndex = "10"
+  img.style.pointerEvents = "none"
+  document.body.appendChild(img)
+  postitShown = true
+}
+
 function loop(now) {
   now = now - offset
   fade = speak(now)
 
-  // Final scene: finish immediately when complete (no hold)
+  // Final scene: finish immediately when complete
   if (iter >= programs.length - 1 && fade >= 1) {
     finished = true
   }
@@ -123,6 +141,11 @@ function loop(now) {
       done = false,
       wordIndex = 0,
       words = wordlist[++iter % wordlist.length]
+
+      // If we just entered the final scene, show the post-it image
+      if (iter >= programs.length - 1) {
+        showPostit()
+      }
     }
   }
 
@@ -138,7 +161,6 @@ function init() {
   setup()
   resize()
   finished = false
-  finalHoldStart = null
   loop(0)
 }
 
