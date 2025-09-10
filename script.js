@@ -107,15 +107,9 @@ function loop(now) {
   now = now - offset
   fade = speak(now)
 
-  // For the final scene, clamp fade to 1 once complete and hold for 60s
+  // Final scene: finish immediately when complete (no hold)
   if (iter >= programs.length - 1 && fade >= 1) {
-    if (finalHoldStart === null) {
-      finalHoldStart = now
-    }
-    fade = 1
-    if (now - finalHoldStart >= 60000) {
-      finished = true
-    }
+    finished = true
   }
 
   draw(now, programs[iter % programs.length], fade)
@@ -134,6 +128,8 @@ function loop(now) {
 
   if (!finished) {
     handle = requestAnimationFrame(loop)
+  } else {
+    window.location.href = "https://visoai.space"
   }
 }
 
