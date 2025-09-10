@@ -88,7 +88,7 @@ function draw(now, program, duration) {
 const styleList = ["zoom", "slide", "paper"]
 const wordlist = [
   ["100X", "Knowledge", "Platform", "", ""],
-  ["Loading...", ""],
+  ["", ""],
   ["", "", "", "", "", "", ""]
 ]
 
