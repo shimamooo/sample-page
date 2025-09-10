@@ -104,6 +104,7 @@ finished = false,
 finalHoldStart = null
 
 let postitShown = false
+let otherImagesShown = false
 
 function showPostit() {
   if (postitShown) return
@@ -119,6 +120,36 @@ function showPostit() {
   img.style.pointerEvents = "none"
   document.body.appendChild(img)
   postitShown = true
+}
+
+function showOtherImages() {
+  if (otherImagesShown) return
+  const placements = [
+    { src: "images/textbook.png", top: "16px", right: "16px", width: "360px" },
+    { src: "images/math1.png", bottom: "16px", left: "16px", width: "160px" },
+    { src: "images/math2.png", bottom: "16px", right: "16px", width: "160px" },
+    { src: "images/pencil.webp", top: "20%", left: "16px", width: "140px" },
+    { src: "images/eraser.webp", top: "20%", right: "16px", width: "120px" },
+    { src: "images/paper_airplane.webp", top: "50%", left: "50%", width: "140px", transform: "translate(-50%, -50%)" }
+  ]
+
+  for (const p of placements) {
+    const img = document.createElement("img")
+    img.src = p.src
+    img.alt = ""
+    img.style.position = "fixed"
+    if (p.top) img.style.top = p.top
+    if (p.right) img.style.right = p.right
+    if (p.bottom) img.style.bottom = p.bottom
+    if (p.left) img.style.left = p.left
+    if (p.transform) img.style.transform = p.transform
+    img.style.width = p.width || "140px"
+    img.style.zIndex = "9"
+    img.style.pointerEvents = "none"
+    document.body.appendChild(img)
+  }
+
+  otherImagesShown = true
 }
 
 function loop(now) {
@@ -145,6 +176,7 @@ function loop(now) {
       // If we just entered the final scene, show the post-it image
       if (iter >= programs.length - 1) {
         showPostit()
+        showOtherImages()
       }
     }
   }
