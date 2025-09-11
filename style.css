@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
 
 body {
   margin: 0;
@@ -31,10 +32,10 @@ div > * {
   grid-column: 1/-1;
   display: block;
   text-align: center;
-  font: 700 10vmin/1.2 "Inter", system-ui;
+  font: 700 10vmin/1.2 "Italianno", system-ui;
   color: white;
   letter-spacing: 5;
-  text-transform: uppercase;
+  text-transform: none;
   translate: 0;
   scale: 1;
   opacity: 0;

@@ -87,9 +87,9 @@ function draw(now, program, duration) {
 
 const styleList = ["zoom", "slide", "paper"]
 const wordlist = [
-  ["100X", "Knowledge", "Platform", "", ""],
-  ["", ""],
-  ["", "", "", "", "", "", ""]
+  ["100X", "Knowledge", "Platform", ""],
+  ["LOADING...", ""],
+  ["", "", "", "", "", "", "","","","","","","","","","","","","","",""]
 ]
 
 let handle, offset = 0,
@@ -228,7 +228,13 @@ function speak(now) {
     span.dataset.text = word
     span.innerText = word
     if (word === "100X") {
-      span.style.color = "#f33"
+      span.style.color = "#000"
+    }
+    if (word === "Platform") {
+      span.style.color = "#000"
+    }
+    if (word === "Knowledge") {
+      span.style.color = "#000"
     }
     titles.appendChild(span)
   }
