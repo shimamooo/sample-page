@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD+Guides&display=swap');
 
 body {
   margin: 0;
@@ -32,7 +31,7 @@ div > * {
   grid-column: 1/-1;
   display: block;
   text-align: center;
-  font: 700 10vmin/1.2 "Italianno", system-ui;
+  font: 700 10vmin/1.2 "Playwrite AU QLD Guides", system-ui;
   color: white;
   letter-spacing: 5;
   text-transform: none;

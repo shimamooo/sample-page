@@ -190,7 +190,7 @@
     vec2 g = abs(mod(uv, n) - .5 * n),
     id = floor(uv / n + .5);
 
-    col = mix(vec3(.9, .84, .56), vec3(.54, .5, .34), .6 * S(.08 * distort, .0, min(g.x, g.y)));
+    col = mix(vec3(.95, .93, .78), vec3(.75, .72, .56), .9 * S(.08 * distort, .0, min(g.x, g.y)));
 
     return col;
   }
@@ -200,10 +200,10 @@
       gl_FragCoord.xy - .5 * resolution
     ) / min(resolution.x, resolution.y);
     vec3 col = grid(uv);
-    col = mix(col, vec3(.9, .84, .56), .6);
+    col = mix(col, vec3(.95, .93, .78), .8);
 
-    col = mix(col, vec3(.9, .84, .56), S(.9, 1., fade * fade));
-    col = mix(col, vec3(.9, .84, .56), 1. - min(1., S(.0, .5, T * .4)));
+    col = mix(col, vec3(.95, .93, .78), S(.9, 1., fade * fade));
+    col = mix(col, vec3(.95, .93, .78), 1. - min(1., S(.0, .5, T * .4)));
 
     fragColor = vec4(col, 1);
   }
