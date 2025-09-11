@@ -113,29 +113,57 @@ function showPostit() {
   img.src = "images/postit.png"
   img.alt = ""
   img.style.position = "fixed"
-  img.style.top = "0"
-  img.style.left = "0"
-  img.style.width = "240px"
+  img.style.top = "50%"
+  img.style.left = "50%"
+  img.style.transform = "translate(-50%, -50%)"
+  img.style.width = "360px"
   img.style.zIndex = "10"
   img.style.pointerEvents = "none"
+  img.style.transition = "transform 200ms ease, filter 200ms ease"
   document.body.appendChild(img)
+  img.addEventListener("load", () => {
+    const hit = document.createElement("div")
+    hit.style.position = "fixed"
+    hit.style.top = "50%"
+    hit.style.left = "50%"
+    hit.style.transform = "translate(-50%, -50%)"
+    const hitW = Math.round(img.width * 0.7)
+    const hitH = Math.round(img.height * 0.7)
+    hit.style.width = hitW + "px"
+    hit.style.height = hitH + "px"
+    hit.style.zIndex = "11"
+    hit.style.cursor = "pointer"
+    hit.style.pointerEvents = "auto"
+    hit.addEventListener("mouseenter", () => {
+      img.style.transform = "translate(-50%, -50%) scale(1.05)"
+      img.style.filter = "drop-shadow(0 8px 18px rgba(0,0,0,.25))"
+    })
+    hit.addEventListener("mouseleave", () => {
+      img.style.transform = "translate(-50%, -50%)"
+      img.style.filter = "none"
+    })
+    hit.addEventListener("click", () => {
+      window.location.href = "https://visoai.space"
+    })
+    document.body.appendChild(hit)
+  })
   postitShown = true
 }
 
 function showOtherImages() {
   if (otherImagesShown) return
   const placements = [
-    { src: "images/math1.png", bottom: "16px", left: "16px", width: "160px" },
-    { src: "images/math2.png", bottom: "16px", right: "16px", width: "160px" },
-    { src: "images/math3.png", bottom: "16px", left: "16px", width: "160px" },
-    { src: "images/math4.png", bottom: "16px", right: "16px", width: "160px" },
-    { src: "images/math5.webp", bottom: "16px", left: "16px", width: "160px" },
-    { src: "images/mathscribbes.png", bottom: "16px", right: "16px", width: "160px" },
-    { src: "images/scribbes2.png", bottom: "16px", right: "16px", width: "160px" },
-    { src: "images/chemistry.webp", bottom: "16px", right: "16px", width: "160px" },
-    { src: "images/chemistry2.webp", bottom: "16px", left: "16px", width: "160px" },
-    { src: "images/chemistry3.png", bottom: "16px", right: "16px", width: "160px" },
-    { src: "images/paper_airplane.webp", top: "50%", left: "50%", width: "140px", transform: "translate(-50%, -50%)" }
+    { src: "images/math1.png", top: "8%", left: "4%", width: "180px" },
+    { src: "images/math2.png", top: "10%", right: "6%", width: "170px" },
+    { src: "images/math3.png", top: "28%", left: "18%", width: "200px" },
+    { src: "images/math4.png", top: "30%", right: "16%", width: "320px" },
+    { src: "images/math5.webp", bottom: "8%", left: "10%", width: "220px" },
+    { src: "images/mathscribbes.png", bottom: "12%", right: "8%", width: "180px" },
+    { src: "images/scribbes2.png", top: "55%", right: "12%", width: "140px" },
+    { src: "images/chemistry.webp", bottom: "22%", right: "18%", width: "400px" },
+    { src: "images/chemistry2.webp", bottom: "26%", left: "22%", width: "320px" },
+    { src: "images/chemistry3.png", top: "65%", left: "6%", width: "380px" },
+    { src: "images/paper_airplane.webp", top: "50%", left: "50%", width: "150px", transform: "translate(-50%, -50%)" }
   ]
 
   for (const p of placements) {
