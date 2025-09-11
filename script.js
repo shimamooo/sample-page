@@ -115,7 +115,7 @@ function showPostit() {
   img.style.position = "fixed"
   img.style.top = "0"
   img.style.left = "0"
-  img.style.width = "140px"
+  img.style.width = "240px"
   img.style.zIndex = "10"
   img.style.pointerEvents = "none"
   document.body.appendChild(img)
@@ -125,11 +125,16 @@ function showPostit() {
 function showOtherImages() {
   if (otherImagesShown) return
   const placements = [
-    { src: "images/textbook.png", top: "16px", right: "16px", width: "360px" },
     { src: "images/math1.png", bottom: "16px", left: "16px", width: "160px" },
     { src: "images/math2.png", bottom: "16px", right: "16px", width: "160px" },
-    { src: "images/pencil.webp", top: "20%", left: "16px", width: "140px" },
-    { src: "images/eraser.webp", top: "20%", right: "16px", width: "120px" },
+    { src: "images/math3.png", bottom: "16px", left: "16px", width: "160px" },
+    { src: "images/math4.png", bottom: "16px", right: "16px", width: "160px" },
+    { src: "images/math5.webp", bottom: "16px", left: "16px", width: "160px" },
+    { src: "images/mathscribbes.png", bottom: "16px", right: "16px", width: "160px" },
+    { src: "images/scribbes2.png", bottom: "16px", right: "16px", width: "160px" },
+    { src: "images/chemistry.webp", bottom: "16px", right: "16px", width: "160px" },
+    { src: "images/chemistry2.webp", bottom: "16px", left: "16px", width: "160px" },
+    { src: "images/chemistry3.png", bottom: "16px", right: "16px", width: "160px" },
     { src: "images/paper_airplane.webp", top: "50%", left: "50%", width: "140px", transform: "translate(-50%, -50%)" }
   ]
 
