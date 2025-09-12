@@ -157,12 +157,12 @@ function showOtherImages() {
     { src: "images/math2.png", top: "8%", right: "3%", width: "270px" },
     { src: "images/math3.png", top: "25%", left: "12%", width: "320px" },
     { src: "images/math4.png", top: "25%", right: "10%", width: "320px" },
-    { src: "images/mathscribbles.png", top: "22%", left: "50%", width: "290px", transform: "translate(-50%, 0)" },
+    { src: "images/mathscribbles.png", top: "10%", left: "50%", width: "350px", transform: "translate(-50%, 0)" },
     { src: "images/scribbles2.png", top: "60%", right: "5%", width: "220px" },
     { src: "images/chemistry.webp", bottom: "15%", right: "10%", width: "600px" },
     { src: "images/chemistry2.webp", bottom: "8%", left: "50%", width: "500px", transform: "translate(-50%, 0)" },
     { src: "images/chemistry3.png", top: "70%", left: "2%", width: "580px" },
-    { src: "images/paper_airplane.webp", top: "55%", left: "50%", width: "240px", transform: "translate(-50%, 0)" }
+    { src: "images/paper_airplane.webp", top: "45%", left: "20%", width: "240px", transform: "translate(-50%, 0)" }
   ]
 
   for (const p of placements) {
