@@ -110,7 +110,7 @@ function showPostit() {
   if (postitShown) return
   const img = document.createElement("img")
   img.id = "postit-note"
-  img.src = "images/postit.png"
+  img.src = "images/Group 3.png"
   img.alt = ""
   img.style.position = "fixed"
   img.style.top = "50%"
@@ -153,17 +153,16 @@ function showPostit() {
 function showOtherImages() {
   if (otherImagesShown) return
   const placements = [
-    { src: "images/math1.png", top: "8%", left: "4%", width: "180px" },
-    { src: "images/math2.png", top: "10%", right: "6%", width: "170px" },
-    { src: "images/math3.png", top: "28%", left: "18%", width: "200px" },
-    { src: "images/math4.png", top: "30%", right: "16%", width: "320px" },
-    { src: "images/math5.webp", bottom: "8%", left: "10%", width: "220px" },
-    { src: "images/mathscribbes.png", bottom: "12%", right: "8%", width: "180px" },
-    { src: "images/scribbes2.png", top: "55%", right: "12%", width: "140px" },
-    { src: "images/chemistry.webp", bottom: "22%", right: "18%", width: "400px" },
-    { src: "images/chemistry2.webp", bottom: "26%", left: "22%", width: "320px" },
-    { src: "images/chemistry3.png", top: "65%", left: "6%", width: "380px" },
-    { src: "images/paper_airplane.webp", top: "50%", left: "50%", width: "150px", transform: "translate(-50%, -50%)" }
+    { src: "images/math1.png", top: "5%", left: "2%", width: "280px" },
+    { src: "images/math2.png", top: "8%", right: "3%", width: "270px" },
+    { src: "images/math3.png", top: "25%", left: "12%", width: "320px" },
+    { src: "images/math4.png", top: "25%", right: "10%", width: "320px" },
+    { src: "images/mathscribbles.png", top: "22%", left: "50%", width: "290px", transform: "translate(-50%, 0)" },
+    { src: "images/scribbles2.png", top: "60%", right: "5%", width: "220px" },
+    { src: "images/chemistry.webp", bottom: "15%", right: "10%", width: "600px" },
+    { src: "images/chemistry2.webp", bottom: "8%", left: "50%", width: "500px", transform: "translate(-50%, 0)" },
+    { src: "images/chemistry3.png", top: "70%", left: "2%", width: "580px" },
+    { src: "images/paper_airplane.webp", top: "55%", left: "50%", width: "240px", transform: "translate(-50%, 0)" }
   ]
 
   for (const p of placements) {
